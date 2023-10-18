@@ -16,7 +16,7 @@ class Instrument {
         std::string ticker;
         std::unique_ptr<OrderBook> orderBook;
     public:
-        Instrument(const std::string& asset, const EquityInstrumentType instrumentType, const std::string& ticker);
+        Instrument(const std::string& asset, const EquityInstrumentType& instrumentType, const std::string& ticker);
         Instrument(const Instrument& other);
         // ~Instrument();
         std::string getAsset() const;
