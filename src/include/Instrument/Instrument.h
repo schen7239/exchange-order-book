@@ -6,8 +6,14 @@
 #include <stdio.h>
 #include <memory>
 
-#include "../../common/types/Instrument.cpp"
 #include "../../include/OrderBook/OrderBook.h"
+
+enum EquityInstrumentType {
+    FUTURES,
+    STOCK,
+    OPTIONS,
+    ETF,
+};
 
 class Instrument {
     private:
