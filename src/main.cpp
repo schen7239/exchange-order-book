@@ -12,10 +12,10 @@ int main() {
     Exchange* e = Exchange::getExchange();
     std::unique_ptr<Instrument> TSLA = std::make_unique<Instrument>("TSLA", EquityInstrumentType::STOCK, "TSLA");
     std::pair<bool, std::string> isTradableTicker = e->startInstrumentTrading(TSLA);
-    std::cout << std::boolalpha << isTradableTicker.first << " " << isTradableTicker.second << std::endl;
+    assert(isTradableTicker.first);
     std::pair<bool, std::string> isTickerRemoved = e->removeInstrumentTrading("TSLA");
-    std::cout << std::boolalpha << isTickerRemoved.first << " " << isTickerRemoved.second << std::endl;
+    assert(isTickerRemoved.first);
     std::unique_ptr<Instrument> TSLA2 = std::make_unique<Instrument>("TSLA2", EquityInstrumentType::STOCK, "TSLA");
     std::pair<bool, std::string> isTradableTicker2 = e->startInstrumentTrading(TSLA2);
-    std::cout << std::boolalpha << isTradableTicker2.first << " " << isTradableTicker2.second << std::endl;
+    assert(isTradableTicker2.first);
 };
