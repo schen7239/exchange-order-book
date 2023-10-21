@@ -14,9 +14,9 @@ enum OrderType {
 };
 
 struct OrderReferences {
-    std::map<double, std::unique_ptr<std::deque<double> > >::iterator bidReference;
-    std::map<double, std::unique_ptr<std::deque<double> > >::iterator askReference;
-    OrderReferences(const std::map<double, std::unique_ptr<std::deque<double> > >::iterator& bidReference, const std::map<double, std::unique_ptr<std::deque<double> > >::iterator& askReference) {
+    std::map<double, std::deque<double>  >::iterator bidReference;
+    std::map<double, std::deque<double>  >::iterator askReference;
+    OrderReferences(const std::map<double, std::deque<double>  >::iterator& bidReference, const std::map<double, std::deque<double> >::iterator& askReference) {
         this->bidReference = bidReference;
         this->askReference = askReference;
     }
@@ -31,12 +31,12 @@ class OrderBook {
         void buy(const OrderType& orderType, const double& price, const int& quantity);
         void sell(const OrderType& orderType, const double& price, const int& quantity);
         void printOrderBook();
-        void updateOrderLookupTable(const double& price, const std::map<double, std::unique_ptr<std::deque<double>>>::iterator& buyIter, const std::map<double, std::unique_ptr<std::deque<double>>>::iterator& sellIter);
+        void updateOrderLookupTable(const double &price, const std::map<double, std::deque<double>>::iterator &buyIter, const std::map<double, std::deque<double>>::iterator &sellIter);
         
     private:
-        std::unique_ptr<std::map<double, std::unique_ptr<std::deque<double> > > > bid;
-        std::unique_ptr<std::map<double, std::unique_ptr<std::deque<double> > > > ask;
-        std::unique_ptr<std::unordered_map<double, std::unique_ptr<OrderReferences> > > orderLookupTable;
+        std::map<double, std::deque<double> > bid;
+        std::map<double, std::deque<double> > ask;
+        std::unordered_map<double, std::unique_ptr<OrderReferences> > orderLookupTable;
 };
 
 #endif // ORDERBOOK_H
