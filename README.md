@@ -1,7 +1,7 @@
 
 # Financial Asset Exchange and Order Book
 
-Before financial assets can be traded, there must be an exchange in place to facilitate transactions between buyers and sellers. The singleton exchange class ensures that there is only one authoritative source for the order books of all tradable assets on the exchange. All orders and trades are conducted within this centralized exchange, preventing inconsistencies and discrepancies in the order book information.
+Before financial assets can be traded, there must be an exchange in place to facilitate transactions between buyers and sellers. The singleton exchange class ensures that there is only one authoritative source for the order books of all tradable assets on the exchange. All orders and trades are conducted within this centralized exchange, preventing inconsistencies and discrepancies in order book information.
 
 ## Table of Contents
 

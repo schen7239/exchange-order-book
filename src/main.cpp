@@ -15,5 +15,7 @@ int main() {
     std::unique_ptr<Instrument> TSLA = std::make_unique<Instrument>("TSLA", EquityInstrumentType::ETF, "TSLA");
     OrderBook* o = TSLA->getOrderBook();
     o->buy(OrderType::AT_MARKET, 20, 20);
+    o->sell(OrderType::AT_MARKET, 20, 40);
+    o->buy(OrderType::AT_MARKET, 20, 40);
     o->printOrderBook();
 }
