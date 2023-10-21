@@ -1,5 +1,16 @@
-// #include <memory>
-// #include <unordered_map>
+#include <memory>
+#include <unordered_map>
+#include <type_traits>
+
+template <typename T>
+struct PointerHelper
+{
+    static bool isNullPtr(const T& ptr)
+    {
+        return (ptr == nullptr);
+    }
+};
+
 
 // template <typename K, typename V>
 // struct CopyUnorderedMap {

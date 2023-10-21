@@ -43,10 +43,10 @@ std::pair<bool, std::string> Exchange::removeInstrumentTrading(const std::string
     if (exchange->instrumentExchange.find(ticker) == exchange->instrumentExchange.end())
         return std::make_pair(false, ticker);
     exchange->instrumentExchange.erase(ticker);
-    return std::make_pair(true, "Ticker " + ticker + " removed!" );
+    return std::make_pair(true, "Ticker " + ticker + " removed!");
 };
 
-void Exchange::initializeExchange(std::string &name)
+void Exchange::initializeExchange(const std::string &name)
 {
     if (Exchange::exchange)
         return;

@@ -28,6 +28,7 @@ class Instrument {
         std::string getAsset() const;
         EquityInstrumentType getInstrumentType() const;
         std::string getTicker() const;
+        OrderBook* getOrderBook() const;
 };
 
 #endif // INSTRUMENT_H
