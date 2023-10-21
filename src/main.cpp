@@ -17,5 +17,10 @@ int main() {
     o->buy(OrderType::AT_MARKET, 20, 20);
     o->sell(OrderType::AT_MARKET, 20, 40);
     o->buy(OrderType::AT_MARKET, 20, 40);
+    o->buy(OrderType::AT_MARKET, 20, 40);
+    o->buy(OrderType::AT_MARKET, 20, 40);
+    o->buy(OrderType::AT_MARKET, 20, 40);
+    o->buy(OrderType::AT_MARKET, 20, 40);
+    o->buy(OrderType::AT_MARKET, 20, 40);
     o->printOrderBook();
 }
