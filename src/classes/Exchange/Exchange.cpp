@@ -46,7 +46,7 @@ std::pair<bool, std::string> Exchange::removeInstrumentTrading(const std::string
     return std::make_pair(true, "Ticker " + ticker + " removed!" );
 };
 
-void Exchange::initializeExchange(std::string &name)
+void Exchange::initializeExchange(const std::string &name)
 {
     if (Exchange::exchange)
         return;

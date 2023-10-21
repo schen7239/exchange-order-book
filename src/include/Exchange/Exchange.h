@@ -19,7 +19,7 @@ class Exchange {
         Exchange(const Exchange& other);
         static std::pair<bool, std::string> startInstrumentTrading(std::unique_ptr<Instrument>& instrument);
         static std::pair<bool, std::string> removeInstrumentTrading(const std::string& ticker);
-        static void initializeExchange(std::string& name);
+        static void initializeExchange(const std::string& name);
         static Exchange* getExchange();
         std::string getName() const;
 };

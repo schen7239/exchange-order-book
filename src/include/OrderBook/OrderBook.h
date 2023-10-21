@@ -27,6 +27,7 @@ class OrderBook {
         void buy(const OrderType& orderType, const double& price, const int& quantity);
         void sell(const OrderType& orderType, const double& price, const int& quantity);
         void printOrderBook();
+        
     private:
         std::unique_ptr<std::map<double, std::unique_ptr<std::deque<double> > > > bid;
         std::unique_ptr<std::map<double, std::unique_ptr<std::deque<double> > > > ask;
