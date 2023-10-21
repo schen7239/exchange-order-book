@@ -68,10 +68,10 @@ void OrderBook::buy(const OrderType &orderType, const double &price, const int &
     }
     std::map<double, std::unique_ptr<std::deque<double>>>::iterator bidRef = (*this->orderLookupTable)[price]->bidReference;
     bidRef->second->emplace_back(quantity);
-    
 };
 
-void OrderBook::sell(const OrderType &orderType, const double &price, const int &quantity) {
+void OrderBook::sell(const OrderType &orderType, const double &price, const int &quantity)
+{
     // if nullptr, you need to get the iterator to store in the lookup table
     if (PointerHelper<std::unique_ptr<std::deque<double>>>::isNullPtr((*this->ask)[price]))
     {
@@ -106,6 +106,6 @@ void OrderBook::updateOrderLookupTable(const double &price, const std::map<doubl
 
     if (sellIter != this->ask->end() && sellIter != orderRef->askReference)
     {
-        orderRef->askReference = buyIter;
+        orderRef->askReference = sellIter;
     }
 }
