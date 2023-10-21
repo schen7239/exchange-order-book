@@ -6,6 +6,7 @@
 #include <deque>
 #include <memory>
 #include <iostream>
+#include <cstdint>
 
 enum OrderType {
     AT_MARKET,
@@ -14,9 +15,9 @@ enum OrderType {
 };
 
 struct OrderReferences {
-    std::map<double, std::deque<double>  >::iterator bidReference;
-    std::map<double, std::deque<double>  >::iterator askReference;
-    OrderReferences(const std::map<double, std::deque<double>  >::iterator& bidReference, const std::map<double, std::deque<double> >::iterator& askReference) {
+    std::map<float, std::deque<uint32_t>  >::iterator bidReference;
+    std::map<float, std::deque<uint32_t>  >::iterator askReference;
+    OrderReferences(const std::map<float, std::deque<uint32_t>  >::iterator& bidReference, const std::map<float, std::deque<uint32_t> >::iterator& askReference) {
         this->bidReference = bidReference;
         this->askReference = askReference;
     }
@@ -28,15 +29,15 @@ class OrderBook {
         OrderBook();
         OrderBook(const OrderBook& other);
         ~OrderBook();
-        void buy(const OrderType& orderType, const double& price, const int& quantity);
-        void sell(const OrderType& orderType, const double& price, const int& quantity);
+        void buy(const OrderType& orderType, const float& price, const uint32_t& quantity);
+        void sell(const OrderType& orderType, const float& price, const uint32_t& quantity);
         void printOrderBook();
-        void updateOrderLookupTable(const double &price, const std::map<double, std::deque<double>>::iterator &buyIter, const std::map<double, std::deque<double>>::iterator &sellIter);
+        void updateOrderLookupTable(const float &price, const std::map<float, std::deque<uint32_t>>::iterator &buyIter, const std::map<float, std::deque<uint32_t>>::iterator &sellIter);
         
     private:
-        std::map<double, std::deque<double> > bid;
-        std::map<double, std::deque<double> > ask;
-        std::unordered_map<double, std::unique_ptr<OrderReferences> > orderLookupTable;
+        std::map<float, std::deque<uint32_t> > bid;
+        std::map<float, std::deque<uint32_t> > ask;
+        std::unordered_map<float, std::unique_ptr<OrderReferences> > orderLookupTable;
 };
 
 #endif // ORDERBOOK_H

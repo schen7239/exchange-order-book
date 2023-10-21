@@ -22,6 +22,7 @@ class Exchange {
         static void initializeExchange(const std::string& name);
         static Exchange* getExchange();
         std::string getName() const;
+        void createOrder(const std::string& ticker, const OrderType& orderType, const float& price, const int& quantity)
 };
 
 #endif

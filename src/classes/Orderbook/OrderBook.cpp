@@ -30,7 +30,7 @@ void OrderBook::printOrderBook()
     for (const auto &pair : this->bid)
     {
         std::cout << pair.first << std::endl;
-        for (const double &order : pair.second)
+        for (const float &order : pair.second)
         {
             std::cout << order << std::endl;
         }
@@ -40,14 +40,14 @@ void OrderBook::printOrderBook()
     for (const auto &pair : this->ask)
     {
         std::cout << pair.first << std::endl;
-        for (const double &order : pair.second)
+        for (const float &order : pair.second)
         {
             std::cout << order << std::endl;
         }
     }
 }
 
-void OrderBook::buy(const OrderType &orderType, const double &price, const int &quantity)
+void OrderBook::buy(const OrderType &orderType, const float &price, const uint32_t &quantity)
 {
     if (!PointerHelper<std::unique_ptr<OrderReferences>>::isNullPtr(this->orderLookupTable[price]) && this->orderLookupTable[price]->bidReference != this->bid.end()) {
         this->orderLookupTable[price]->bidReference->second.emplace_back(quantity);
@@ -55,22 +55,22 @@ void OrderBook::buy(const OrderType &orderType, const double &price, const int &
     }
 
     this->bid[price].emplace_back(quantity);
-    std::map<double, std::deque<double>>::iterator buyIter = this->bid.find(price);
+    std::map<float, std::deque<uint32_t>>::iterator buyIter = this->bid.find(price);
     this->updateOrderLookupTable(price, buyIter, this->ask.end());
 };
 
-void OrderBook::sell(const OrderType &orderType, const double &price, const int &quantity)
+void OrderBook::sell(const OrderType &orderType, const float &price, const uint32_t &quantity)
 {
     if (!PointerHelper<std::unique_ptr<OrderReferences>>::isNullPtr(this->orderLookupTable[price]) && this->orderLookupTable[price]->askReference != this->ask.end()) {
         this->orderLookupTable[price]->askReference->second.emplace_back(quantity);
         return;
     }
     this->ask[price].emplace_back(quantity);
-    std::map<double, std::deque<double>>::iterator sellIter = this->ask.find(price);
+    std::map<float, std::deque<uint32_t>>::iterator sellIter = this->ask.find(price);
     this->updateOrderLookupTable(price, this->bid.end(), sellIter);
 };
 
-void OrderBook::updateOrderLookupTable(const double &price, const std::map<double, std::deque<double>>::iterator &buyIter, const std::map<double, std::deque<double>>::iterator &sellIter)
+void OrderBook::updateOrderLookupTable(const float &price, const std::map<float, std::deque<uint32_t>>::iterator &buyIter, const std::map<float, std::deque<uint32_t>>::iterator &sellIter)
 {
 
     // if nullptr, we need to assign a new unique ptr to lookup data obj
