@@ -11,7 +11,7 @@
 int main() {
     std::string exchangeName = "Steve";
     Exchange::initializeExchange(exchangeName);
-    Exchange* e = Exchange::getExchange();
+    std::shared_ptr<Exchange> e = Exchange::getExchange();
     std::unique_ptr<Instrument> TSLA = std::make_unique<Instrument>("TSLA", EquityInstrumentType::ETF, "TSLA");
     OrderBook* o = TSLA->getOrderBook();
     o->buy(OrderType::AT_MARKET, 20, 20);

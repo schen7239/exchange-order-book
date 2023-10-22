@@ -11,11 +11,11 @@ Exchange::Exchange(const Exchange &other)
     }
 }
 
-std::unique_ptr<Exchange> Exchange::exchange = nullptr;
+std::shared_ptr<Exchange> Exchange::exchange = nullptr;
 
 std::pair<bool, std::string> Exchange::startInstrumentTrading(std::unique_ptr<Instrument> &instrument)
 {
-    Exchange *exchange = Exchange::getExchange();
+    std::shared_ptr<Exchange> exchange = Exchange::getExchange();
     if (!instrument)
     {
         // instrument is null
@@ -39,7 +39,7 @@ std::pair<bool, std::string> Exchange::startInstrumentTrading(std::unique_ptr<In
 
 std::pair<bool, std::string> Exchange::removeInstrumentTrading(const std::string &ticker)
 {
-    Exchange *exchange = Exchange::getExchange();
+    std::shared_ptr<Exchange> exchange = Exchange::getExchange();
     if (exchange->instrumentExchange.find(ticker) == exchange->instrumentExchange.end())
         return std::make_pair(false, ticker);
     exchange->instrumentExchange.erase(ticker);
@@ -54,11 +54,11 @@ void Exchange::initializeExchange(const std::string &name)
     Exchange::exchange = std::make_unique<Exchange>(exchange);
 };
 
-Exchange *Exchange::getExchange()
+std::shared_ptr<Exchange> Exchange::getExchange()
 {
     if (!Exchange::exchange)
         return nullptr;
-    return Exchange::exchange.get();
+    return Exchange::exchange;
 };
 
 std::string Exchange::getName() const
